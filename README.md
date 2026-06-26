@@ -19,8 +19,6 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 
 ## Estado actual
 
-## Estado actual
-
 - Implementada la lógica inicial de certificados:
     - Generación de una entidad certificadora raíz.
     - Generación de una entidad certificadora subordinada.
