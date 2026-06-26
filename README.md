@@ -19,7 +19,13 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 
 ## Estado actual
 
-Implementada la lógica inicial de certificados
+## Estado actual
+
+- Implementada la lógica inicial de certificados:
+    - Generación de una entidad certificadora raíz.
+    - Generación de una entidad certificadora subordinada.
+    - Emisión de certificados X.509 firmados por una CA.
+    - Validación de certificados X.509 emitidos por CAs generadas por la aplicación.
 
 ## Estructura del proyecto
 
