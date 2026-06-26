@@ -9,9 +9,8 @@ __pycache__/
 # Environment variables 
 .env
 
-# =========================
+
 # IDEs / editors
-# =========================
 .vscode/
 .idea/ #PyCharm
 
@@ -21,3 +20,6 @@ __pycache__/
 Thumbs.db # Windows
 desktop.ini # Windows
 .DS_Store #macOS
+
+# Generated cryptographic material
+storage/

@@ -2,20 +2,36 @@
 
 ## Objetivo
 
-Desarrollo de una aplicación o microservicio que permitan realizar una serie de operaciones criptográficas básicas basada en conceptos de criptografía asimétrica, KPIs y mediante el uso de certificados x509. 
+Desarrollo de una aplicación o microservicio que permita realizar operaciones criptográficas básicas basadas en criptografía asimétrica, PKI y certificados X.509.
 
-## Pasos
+El proyecto forma parte de una prueba técnica orientada al desarrollo de una aplicación cibersegura.
 
-- Generar una entidad certificadora (CA) raíz.
-- Generar una entidad certificadora subordinada (SubCA).
-- Emitir certificados creados con CA.
-- Función de validación de certificados.
-- Creación de una API REST que exponga las funciones creadas anteriormente.
-- Restricción del uso de la API REST  a usuarios autorizados.
-- Evaluación de vulnebarbilidades (librerías externas).
-- Desplegar aplicación mediante el uso de Docker y Kubernetes.
+## Funcionalidades previstas
 
-## Estado
+- Generar una entidad certificadora raíz.
+- Generar una entidad certificadora subordinada.
+- Emitir certificados X.509 firmados por una CA.
+- Validar certificados X.509 emitidos por CAs generadas por la aplicación.
+- Exponer las operaciones mediante una API REST.
+- Restringir el acceso a la API a usuarios autorizados.
+- Documentar dependencias externas y revisar vulnerabilidades.
+- Preparar despliegue mediante Docker y Kubernetes.
 
-Fase inicial.
+## Estado actual
 
+Implementada la lógica inicial de certificados
+
+## Estructura del proyecto
+
+```text
+crypto_service/
+├── README.md
+├── requirements.txt
+├── src/
+│   └── crypto_service/
+│       ├── __init__.py
+│       ├── certificate_authority.py
+│       ├── helpers.py
+│       ├── main.py
+│       └── validation.py
+└── tests/
