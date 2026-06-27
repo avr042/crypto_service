@@ -55,16 +55,29 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 crypto_service/
 ├── README.md
 ├── requirements.txt
-├── src/
-│   └── crypto_service/
-│       ├── __init__.py
-│       ├── api.py
-│       ├── certificate_authority.py
-│       ├── demo_environment.py
-│       ├── helpers.py
-│       ├── main.py
-│       └── validation.py
+├── storage/
+│   ├── cas/
+│   │   ├── index.json
+│   │   └── <ca-directory>/
+│   │       └── certificate.pem
+│   ├── certificates/
+│   │   ├── index.json
+│   │   └── <certificate-directory>/
+│   │       └── certificate.pem
+│   └── entities/
+│       └── <entity-common-name>/
+│           └── public_key.pem
+└── src/
+    └── crypto_service/
+        ├── __init__.py
+        ├── api.py
+        ├── certificate_authority.py
+        ├── demo_environment.py
+        ├── helpers.py
+        ├── main.py
+        └── validation.py
 ```
+
 
 ## Ejecución
 
