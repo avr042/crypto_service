@@ -1,0 +1,28 @@
+{
+  "by_subject_key_identifier": {
+    "9da419a3dc401a447494c96cb8b304bbdf9881a1": {
+      "subject": "CN=Crypto Service Root CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "608449545676443374699504197678574718700849782164",
+      "directory": "Crypto-Service-Root-CA-6a93d23d41f3",
+      "certificate_path": "Crypto-Service-Root-CA-6a93d23d41f3\\certificate.pem",
+      "private_key_path": "Crypto-Service-Root-CA-6a93d23d41f3\\private_key.pem"
+    },
+    "ad15477f89190446cda290033e27a1e9a62370c1": {
+      "subject": "CN=Crypto Service TLS Sub CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "186856937829562155757902747372144790749810517963",
+      "directory": "Crypto-Service-TLS-Sub-CA-20baf4731395",
+      "certificate_path": "Crypto-Service-TLS-Sub-CA-20baf4731395\\certificate.pem",
+      "private_key_path": "Crypto-Service-TLS-Sub-CA-20baf4731395\\private_key.pem"
+    },
+    "c54db057168ca5a08773c00ad377aba8b5292963": {
+      "subject": "CN=Crypto Service Client Sub CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "34560847965375866204613822906562040527427803411",
+      "directory": "Crypto-Service-Client-Sub-CA-60dc313db793",
+      "certificate_path": "Crypto-Service-Client-Sub-CA-60dc313db793\\certificate.pem",
+      "private_key_path": "Crypto-Service-Client-Sub-CA-60dc313db793\\private_key.pem"
+    }
+  }
+}

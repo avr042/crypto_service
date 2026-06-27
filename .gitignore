@@ -9,17 +9,19 @@ __pycache__/
 # Environment variables 
 .env
 
-
 # IDEs / editors
 .vscode/
-.idea/ #PyCharm
+.idea/
 
-# =========================
 # Windows / OS files
-# =========================
-Thumbs.db # Windows
-desktop.ini # Windows
-.DS_Store #macOS
+Thumbs.db
+desktop.ini
 
-# Generated cryptographic material
-storage/
+# macOS
+.DS_Store
+
+# Generated demo cryptographic material
+# Public demo certificates, public keys and indexes can be committed.
+# Private keys must never be committed.
+
+storage/**/private_key.pem
