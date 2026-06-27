@@ -19,11 +19,35 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 
 ## Estado actual
 
-- Implementada la lógica inicial de certificados:
-    - Generación de una entidad certificadora raíz.
-    - Generación de una entidad certificadora subordinada.
-    - Emisión de certificados X.509 firmados por una CA.
-    - Validación de certificados X.509 emitidos por CAs generadas por la aplicación.
+* Implementada la lógica principal de certificados:
+
+  * Generación de una entidad certificadora raíz.
+  * Generación de entidades certificadoras subordinadas.
+  * Emisión de certificados X.509 firmados por una CA.
+  * Validación de cadenas de certificados X.509 emitidas por CAs generadas por la aplicación.
+
+* Implementada persistencia local del material criptográfico:
+
+  * Almacenamiento de CAs en `storage/cas/`.
+  * Almacenamiento de certificados emitidos en `storage/certificates/`.
+  * Almacenamiento de claves de entidades finales simuladas en `storage/entities/`.
+  * Uso de índices JSON para localizar CAs y certificados generados.
+
+* Implementada API REST con FastAPI:
+
+  * `POST /crypto/ca`: creación de Root CA.
+  * `GET /crypto/ca`: listado de CAs disponibles.
+  * `POST /crypto/subca`: creación de SubCA.
+  * `POST /crypto/issue`: emisión de certificados para entidades conocidas.
+  * `POST /crypto/validate`: validación de certificados emitidos.
+  * `GET /crypto/entities`: listado de entidades finales conocidas.
+  * `GET /crypto/certificates`: listado de certificados emitidos.
+
+* Añadidas funcionalidades auxiliares para facilitar la demostración:
+
+  * Creación de un entorno PKI de prueba mediante `demo_environment.py`.
+  * Generación de Root CA, varias SubCAs y claves de entidades finales simuladas.
+  * Emisión y consulta de certificados mediante identificadores internos en la API.
 
 ## Estructura del proyecto
 
@@ -34,8 +58,32 @@ crypto_service/
 ├── src/
 │   └── crypto_service/
 │       ├── __init__.py
+│       ├── api.py
 │       ├── certificate_authority.py
+│       ├── demo_environment.py
 │       ├── helpers.py
 │       ├── main.py
 │       └── validation.py
-└── tests/
+```
+
+## Ejecución
+
+Crear el entorno de demostración:
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m crypto_service.main
+```
+
+Levantar la API REST:
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m uvicorn crypto_service.api:app --reload
+```
+
+La documentación interactiva de la API estará disponible en:
+
+```text
+http://localhost:8000/docs
+```

@@ -31,9 +31,12 @@ def generate_private_key(): #Create the private key using RSA, ECDSA, or EdDSA a
 ###################### root CA generation functions ######################
 
 
-def generate_root_ca_certificate(private_key): #Create a x509 root CA certificate
+def generate_root_ca_certificate(
+    private_key,
+    common_name: str = "Crypto Service Root CA",
+): #Create a x509 root CA certificate
     subject = x509.Name([
-        x509.NameAttribute(NameOID.COMMON_NAME, "Crypto Service Root CA"),
+        x509.NameAttribute(NameOID.COMMON_NAME, common_name),
     ])
 
     issuer = subject #In root CA, the issuer is the same as the subject
@@ -90,11 +93,12 @@ def generate_root_ca_certificate(private_key): #Create a x509 root CA certificat
     return certificate
 
 def generate_root_ca(
+    common_name: str = "Crypto Service Root CA",
     save_to_files: bool = True,
     storage_dir: str | Path = "storage/cas",
 ) -> CertificateAuthority:
     private_key = generate_private_key()
-    certificate = generate_root_ca_certificate(private_key)
+    certificate = generate_root_ca_certificate(private_key, common_name)
 
     root_ca = CertificateAuthority(
         private_key=private_key,
@@ -267,4 +271,3 @@ def issue_certificate(
     )
 
     return certificate
-
