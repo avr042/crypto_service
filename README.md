@@ -46,8 +46,17 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 * Implementado control de acceso a la API:
 
   * Endpoint público `POST /auth/login` para autenticación de usuarios.
-  * Autentificación mediante tokens Bearer con JWT.
+  * Autenticación mediante tokens Bearer con JWT.
   * Usuarios de demostración hardcodeados para la prueba técnica.
+
+* Realizado inventariado y análisis de seguridad de dependencias:
+
+  * Generación de SBOMs en formato CycloneDX.
+  * Análisis de `requirements.txt` mediante `pip-audit`.
+  * Análisis de SBOMs mediante Trivy.
+  * Documentación del proceso y los resultados en `SECURITY_DEPENDENCIES.md`.
+  * No se ha realizado ninguna acción adicional, ya que no se han detectado vulnerabilidades conocidas en las dependencias analizadas.
+
 
 * Añadidas funcionalidades auxiliares para facilitar la demostración:
 
@@ -56,12 +65,17 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
   * Emisión y consulta de certificados mediante identificadores internos en la API.
 
 
-## Estructura del proyecto
-
 ```text
 crypto_service/
 ├── README.md
+├── SECURITY_DEPENDENCIES.md
 ├── requirements.txt
+├── security-reports/
+│   ├── sbom.json
+│   ├── trivy-sbom.json
+│   ├── pip-audit-report.json
+│   ├── trivy-sbom-report.json
+│   └── trivy-sbom-analysis-report.json
 ├── storage/
 │   ├── cas/
 │   │   ├── index.json
@@ -85,6 +99,7 @@ crypto_service/
         ├── main.py
         └── validation.py
 ```
+
 
 
 ## Ejecución
