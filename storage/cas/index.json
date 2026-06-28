@@ -1,0 +1,12 @@
+{
+  "by_subject_key_identifier": {
+    "2c1249cdfcc12e2704d51aa518b3688e6d88c241": {
+      "subject": "CN=Crypto Service Root CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "566190507653195272635595120755658196631381896603",
+      "directory": "Crypto-Service-Root-CA-632cdc4616bd",
+      "certificate_path": "Crypto-Service-Root-CA-632cdc4616bd\\certificate.pem",
+      "private_key_path": "Crypto-Service-Root-CA-632cdc4616bd\\private_key.pem"
+    }
+  }
+}

@@ -30,7 +30,7 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 
   * Almacenamiento de CAs en `storage/cas/`.
   * Almacenamiento de certificados emitidos en `storage/certificates/`.
-  * Almacenamiento de claves de entidades finales simuladas en `storage/entities/`.
+  * Almacenamiento de claves públicas de entidades finales simuladas en `storage/entities/`.
   * Uso de índices JSON para localizar CAs y certificados generados.
 
 * Implementada API REST con FastAPI:
@@ -43,11 +43,18 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
   * `GET /crypto/entities`: listado de entidades finales conocidas.
   * `GET /crypto/certificates`: listado de certificados emitidos.
 
+* Implementado control de acceso a la API:
+
+  * Endpoint público `POST /auth/login` para autenticación de usuarios.
+  * Autentificación mediante tokens Bearer con JWT.
+  * Usuarios de demostración hardcodeados para la prueba técnica.
+
 * Añadidas funcionalidades auxiliares para facilitar la demostración:
 
   * Creación de un entorno PKI de prueba mediante `demo_environment.py`.
   * Generación de Root CA, varias SubCAs y claves de entidades finales simuladas.
   * Emisión y consulta de certificados mediante identificadores internos en la API.
+
 
 ## Estructura del proyecto
 
@@ -71,6 +78,7 @@ crypto_service/
     └── crypto_service/
         ├── __init__.py
         ├── api.py
+        ├── auth.py
         ├── certificate_authority.py
         ├── demo_environment.py
         ├── helpers.py

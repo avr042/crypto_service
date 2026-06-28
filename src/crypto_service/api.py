@@ -1,6 +1,8 @@
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
+
 from pydantic import BaseModel, Field
 
 from cryptography.hazmat.primitives import serialization
@@ -31,6 +33,13 @@ from crypto_service.validation import (
 )
 
 
+from crypto_service.auth import (
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+    authenticate_user,
+    create_access_token,
+    get_current_user,
+)
+
 CA_STORAGE_DIR = Path("storage/cas")
 CERTIFICATE_STORAGE_DIR = Path("storage/certificates")
 ENTITY_STORAGE_DIR = Path("storage/entities")
@@ -40,6 +49,44 @@ app = FastAPI(
     title="Crypto Service",
     version="0.1.0",
 )
+
+
+############################ AUTHENTICATION ###########################
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+    expires_in: int
+
+@app.post(
+    "/auth/login",
+    response_model=TokenResponse,
+)
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+) -> TokenResponse:
+    user = authenticate_user(
+        username=form_data.username,
+        password=form_data.password,
+    )
+
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    access_token = create_access_token(
+        username=user.username,
+        role=user.role,
+    )
+
+    return TokenResponse(
+        access_token=access_token,
+        token_type="bearer",
+        expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+    )
 
 
 ############################ CREATE ROOT CA ###########################
@@ -66,13 +113,14 @@ class CreateRootCAResponse(BaseModel): #Model for the response body when creatin
     "/crypto/ca",
     response_model=CreateRootCAResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(get_current_user)],
 )
 def create_root_ca(request: CreateRootCARequest) -> CreateRootCAResponse:
     try:
         root_ca = generate_root_ca(
             common_name=request.common_name,
             save_to_files=True,
-            CA_STORAGE_DIR=CA_STORAGE_DIR,
+            storage_dir=CA_STORAGE_DIR,
         )
     except Exception as exc:
         raise HTTPException(
@@ -114,6 +162,7 @@ class ListCAsResponse(BaseModel):
 @app.get(
     "/crypto/ca",
     response_model=ListCAsResponse,
+    dependencies=[Depends(get_current_user)]
 )
 def list_cas() -> ListCAsResponse:
     cas = list_cas_from_store(base_dir=CA_STORAGE_DIR)
@@ -151,6 +200,7 @@ class CreateSubCAResponse(BaseModel):
     "/crypto/subca",
     response_model=CreateSubCAResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(get_current_user)],
 )
 def create_sub_ca(request: CreateSubCARequest) -> CreateSubCAResponse:
     try:
@@ -186,7 +236,7 @@ def create_sub_ca(request: CreateSubCARequest) -> CreateSubCAResponse:
             issuer_ca=issuer_ca,
             common_name=request.common_name,
             save_to_files=True,
-            CA_STORAGE_DIR=CA_STORAGE_DIR,
+            storage_dir=CA_STORAGE_DIR,
         )
     except Exception as exc:
         raise HTTPException(
@@ -224,6 +274,7 @@ class ListEntitiesResponse(BaseModel):
 @app.get(
     "/crypto/entities",
     response_model=ListEntitiesResponse,
+    dependencies=[Depends(get_current_user)],
 )
 def list_entities() -> ListEntitiesResponse:
     entities = list_entities_from_store(
@@ -270,6 +321,7 @@ class IssueCertificateResponse(BaseModel):
     "/crypto/issue",
     response_model=IssueCertificateResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(get_current_user)],
 )
 def issue_end_entity_certificate(
     request: IssueCertificateRequest,
@@ -377,6 +429,7 @@ class ListCertificatesResponse(BaseModel):
 @app.get(
     "/crypto/certificates",
     response_model=ListCertificatesResponse,
+    dependencies=[Depends(get_current_user)],
 )
 def list_certificates() -> ListCertificatesResponse:
     certificates = list_certificates_from_store(
@@ -410,6 +463,7 @@ class ValidateCertificateResponse(BaseModel):
     "/crypto/validate",
     response_model=ValidateCertificateResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_current_user)],
 )
 def validate_x509_certificate(
     request: ValidateCertificateRequest,
