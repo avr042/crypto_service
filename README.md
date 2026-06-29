@@ -134,6 +134,7 @@ Activar el entorno virtual de Python (opcional):
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
+```
 
 Crear el entorno de demostración (opcional):
 
