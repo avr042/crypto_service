@@ -1,0 +1,34 @@
+# Python virtual environment
+
+.venv
+
+# Git repository metadata
+
+.git
+.gitignore
+.gitattributes
+
+# Python cache files
+
+**pycache**
+*.pyc
+*.pyo
+*.pyd
+
+# Test and tool caches
+
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Local editor and operating system files
+
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Local/private generated cryptographic material and security reports
+
+storage/**/private_key.pem
+security-reports

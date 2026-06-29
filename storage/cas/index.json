@@ -1,12 +1,36 @@
 {
   "by_subject_key_identifier": {
-    "2c1249cdfcc12e2704d51aa518b3688e6d88c241": {
+    "1d8f95651b3f1764354c9eb2e240e0a5c4cd93b5": {
       "subject": "CN=Crypto Service Root CA",
       "issuer": "CN=Crypto Service Root CA",
-      "serial_number": "566190507653195272635595120755658196631381896603",
-      "directory": "Crypto-Service-Root-CA-632cdc4616bd",
-      "certificate_path": "Crypto-Service-Root-CA-632cdc4616bd\\certificate.pem",
-      "private_key_path": "Crypto-Service-Root-CA-632cdc4616bd\\private_key.pem"
+      "serial_number": "393989023603611226222658192778461259698352508764",
+      "directory": "Crypto-Service-Root-CA-4503142ed480",
+      "certificate_path": "Crypto-Service-Root-CA-4503142ed480\\certificate.pem",
+      "private_key_path": "Crypto-Service-Root-CA-4503142ed480\\private_key.pem"
+    },
+    "33720191a8971fa0616a3ed53bf20f1e11169689": {
+      "subject": "CN=Crypto Service TLS Sub CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "257686861287609630314747507024315596196511690847",
+      "directory": "Crypto-Service-TLS-Sub-CA-2d2314184fd0",
+      "certificate_path": "Crypto-Service-TLS-Sub-CA-2d2314184fd0\\certificate.pem",
+      "private_key_path": "Crypto-Service-TLS-Sub-CA-2d2314184fd0\\private_key.pem"
+    },
+    "bc44450aa3245a249d2d19229ab762f19e4ee77b": {
+      "subject": "CN=Crypto Service Client Sub CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "554207774189505347266911629081369731014048857383",
+      "directory": "Crypto-Service-Client-Sub-CA-6113893d5a98",
+      "certificate_path": "Crypto-Service-Client-Sub-CA-6113893d5a98\\certificate.pem",
+      "private_key_path": "Crypto-Service-Client-Sub-CA-6113893d5a98\\private_key.pem"
+    },
+    "179fcf536c81d753ddb5579d28fd60f6e2ffa027": {
+      "subject": "CN=New Root CA",
+      "issuer": "CN=New Root CA",
+      "serial_number": "64584283300620432685842596077974718245453868731",
+      "directory": "New-Root-CA-b500f366df15",
+      "certificate_path": "New-Root-CA-b500f366df15/certificate.pem",
+      "private_key_path": "New-Root-CA-b500f366df15/private_key.pem"
     }
   }
 }

@@ -64,9 +64,14 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
   * Generación de Root CA, varias SubCAs y claves de entidades finales simuladas.
   * Emisión y consulta de certificados mediante identificadores internos en la API.
 
+* Implementada contenerización básica con Docker
+
+
 
 ```text
 crypto_service/
+├── .dockerignore
+├── Dockerfile
 ├── README.md
 ├── SECURITY_DEPENDENCIES.md
 ├── requirements.txt
@@ -123,3 +128,31 @@ La documentación interactiva de la API estará disponible en:
 ```text
 http://localhost:8000/docs
 ```
+
+## Ejecución con Docker
+
+Construir la imagen:
+
+```powershell
+docker build -t crypto-service:0.1.0 .
+```
+
+Ejecutar el contenedor:
+
+```powershell
+docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" crypto-service:0.1.0
+```
+
+La API quedará disponible en:
+
+```text
+http://localhost:8000/docs
+```
+
+Para ejecutar la aplicación utilizando la carpeta local `storage/` como almacenamiento persistente:
+
+```powershell
+docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" -v ${PWD}\storage:/app/storage crypto-service:0.1.0
+```
+
+La variable de entorno `JWT_SECRET_KEY` se utiliza para configurar la clave de firma de los tokens JWT sin incluir secretos dentro de la imagen Docker.
