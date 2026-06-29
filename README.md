@@ -127,9 +127,15 @@ crypto_service/
 
 
 
-## Ejecución
 
-Crear el entorno de demostración:
+## Ejecución en local
+
+Activar el entorno virtual de Python (opcional):
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+
+Crear el entorno de demostración (opcional):
 
 ```powershell
 $env:PYTHONPATH = "src"
