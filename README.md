@@ -76,7 +76,7 @@ El proyecto forma parte de una prueba técnica orientada al desarrollo de una ap
 * Implementado despliegue básico en Kubernetes:
 
   * Creación de manifiesto `Secret` para inyectar `JWT_SECRET_KEY`.
-  * Configuración de 2 réplicas para demostrar escalabilidad básica.
+  * Configuración de 1 réplica para mantener la consistencia del almacenamiento local usado en la demostración.
   * Validación del despliegue en Kubernetes local mediante Docker Desktop.
   * Acceso a la API desde `http://localhost:30080/docs`.
 
@@ -166,7 +166,7 @@ docker build -t crypto-service:0.1.0 .
 Ejecutar el contenedor:
 
 ```powershell
-docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" crypto-service:0.1.0
+docker run -d -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" crypto-service:0.1.0
 ```
 
 La API quedará disponible en:
@@ -178,43 +178,11 @@ http://localhost:8000/docs
 Para ejecutar la aplicación utilizando la carpeta local `storage/` como almacenamiento persistente:
 
 ```powershell
-docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" -v ${PWD}\storage:/app/storage crypto-service:0.1.0
+docker run -d -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" -v ${PWD}\storage:/app/storage crypto-service:0.1.0
 ```
 
 La variable de entorno `JWT_SECRET_KEY` se utiliza para configurar la clave de firma de los tokens JWT sin incluir secretos dentro de la imagen Docker.
 
-
-## Ejecución con Docker
-
-La aplicación puede ejecutarse dentro de un contenedor Docker para facilitar su ejecución en distintos entornos.
-
-Construir la imagen:
-
-```powershell
-docker build -t crypto-service:0.1.0 .
-```
-
-Ejecutar el contenedor:
-
-```powershell
-docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" crypto-service:0.1.0
-```
-
-La API estará disponible en:
-
-```text
-http://localhost:8000/docs
-```
-
-Para ejecutar la aplicación usando la carpeta local `storage/` como almacenamiento de demostración:
-
-```powershell
-docker run --rm -p 8000:8000 -e JWT_SECRET_KEY="demo-docker-secret" -v ${PWD}\storage:/app/storage crypto-service:0.1.0
-```
-
-La variable de entorno `JWT_SECRET_KEY` se utiliza para configurar la clave de firma de los tokens JWT sin incluir secretos dentro de la imagen Docker.
-
-Las claves privadas generadas localmente se excluyen de la imagen mediante `.dockerignore`.
 
 ## Despliegue con Kubernetes
 
@@ -228,7 +196,9 @@ k8s/
 
 El manifiesto `secret.yaml` define un `Secret` de demostración para inyectar la variable `JWT_SECRET_KEY`.
 
-El manifiesto `deployment.yaml` define un `Deployment` con 2 réplicas de la imagen `crypto-service:0.1.0`, configurando el puerto `8000`, la variable de entorno `JWT_SECRET_KEY`, una `readinessProbe` y una `livenessProbe`.
+El manifiesto `deployment.yaml` define un `Deployment` con 1 réplica de la imagen `crypto-service:0.1.0`, configurando el puerto `8000`, la variable de entorno `JWT_SECRET_KEY`, una `readinessProbe` y una `livenessProbe`.
+
+
 
 El manifiesto `service.yaml` define un `Service` de tipo `NodePort` para exponer la aplicación en el puerto `30080`.
 

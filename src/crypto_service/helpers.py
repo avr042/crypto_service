@@ -14,6 +14,15 @@ def slugify(value: str) -> str: # Converts a string into a slug format suitable 
 
     return value or "ca"
 
+def stored_relative_path_to_path(stored_path: str) -> Path: # Ensures that a stored relative path is valid for Windows and Linux systems, preventing directory traversal attacks.   
+    normalized_path = stored_path.replace("\\", "/")
+    relative_path = Path(normalized_path)
+
+    if relative_path.is_absolute() or ".." in relative_path.parts:
+        raise ValueError("Invalid stored relative path.")
+
+    return relative_path
+
 
 def get_common_name(certificate: x509.Certificate) -> str: # Retrieves the Common Name (CN) from a certificate's subject
     common_name_attributes = certificate.subject.get_attributes_for_oid(
@@ -114,9 +123,9 @@ def update_ca_index( # Updates the CA index with a new CA entry based on the pro
     "subject": certificate.subject.rfc4514_string(),
     "issuer": certificate.issuer.rfc4514_string(),
     "serial_number": str(certificate.serial_number),
-    "directory": str(relative_ca_directory),
-    "certificate_path": str(relative_certificate_path),
-    "private_key_path": str(relative_private_key_path),
+    "directory": relative_ca_directory.as_posix(),
+    "certificate_path": relative_certificate_path.as_posix(),
+    "private_key_path": relative_private_key_path.as_posix(),
     }
 
     save_ca_index(
@@ -218,8 +227,9 @@ def load_ca_from_store( # Loads a CA from the store based on its Subject Key Ide
     if ca_entry is None:
         raise ValueError("CA not found in store.")
 
-    certificate_path = ca_store_path / ca_entry["certificate_path"]
-    private_key_path = ca_store_path / ca_entry["private_key_path"]
+
+    certificate_path = ca_store_path / stored_relative_path_to_path(ca_entry["certificate_path"])
+    private_key_path = ca_store_path / stored_relative_path_to_path(ca_entry["private_key_path"])
 
     if not certificate_path.exists():
         raise FileNotFoundError("CA certificate file not found.")
@@ -314,8 +324,8 @@ def save_certificate_to_pem( # Saves a certificate to a PEM file in a structured
         "subject": certificate.subject.rfc4514_string(),
         "issuer": certificate.issuer.rfc4514_string(),
         "serial_number": str(certificate.serial_number),
-        "directory": str(relative_certificate_directory),
-        "certificate_path": str(relative_certificate_path),
+        "directory": relative_certificate_directory.as_posix(),
+        "certificate_path": relative_certificate_path.as_posix(),
     }
 
     save_certificate_index(
@@ -348,7 +358,7 @@ def load_certificate_from_store(
     if certificate_entry is None:
         raise FileNotFoundError("Certificate not found in store.")
 
-    certificate_path = certificate_store_path / certificate_entry["certificate_path"]
+    certificate_path = certificate_store_path / stored_relative_path_to_path(certificate_entry["certificate_path"])
 
     if not certificate_path.exists():
         raise FileNotFoundError("Certificate file not found.")
@@ -425,9 +435,7 @@ def list_certificates_from_store(
     for certificate_id, certificate_entry in sorted(
         index["certificates"].items()
     ):
-        certificate_path = certificate_store_path / certificate_entry[
-            "certificate_path"
-        ]
+        certificate_path = certificate_store_path / stored_relative_path_to_path(certificate_entry["certificate_path"])
 
         certificates.append(
             {

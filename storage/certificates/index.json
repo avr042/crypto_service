@@ -1,0 +1,25 @@
+{
+  "certificates": {
+    "237bf52957216a73face096ff01087b587535bb1": {
+      "subject": "CN=admin.local",
+      "issuer": "CN=Crypto Service Client Sub CA",
+      "serial_number": "202579025215700315567370696136400869235195337649",
+      "directory": "admin.local-237bf5295721",
+      "certificate_path": "admin.local-237bf5295721\\certificate.pem"
+    },
+    "1069f9282f8f191a316e4b5cfb4c3c319b22b616": {
+      "subject": "CN=alice.client",
+      "issuer": "CN=Crypto Service TLS Sub CA",
+      "serial_number": "93707135212735556344677046603446465478808221206",
+      "directory": "alice.client-1069f9282f8f",
+      "certificate_path": "alice.client-1069f9282f8f/certificate.pem"
+    },
+    "36ad918d28c8051900552e9109a4a6d34e818830": {
+      "subject": "CN=api.local",
+      "issuer": "CN=Docker Test Crypto Service Sub CA",
+      "serial_number": "312156209859314655796121217619323782206870095920",
+      "directory": "api.local-36ad918d28c8",
+      "certificate_path": "api.local-36ad918d28c8/certificate.pem"
+    }
+  }
+}

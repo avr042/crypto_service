@@ -12,6 +12,7 @@ from crypto_service.helpers import (
     get_authority_key_identifier,
     load_ca_index,
     load_certificate_from_pem,
+    stored_relative_path_to_path,
 )
 
 
@@ -46,7 +47,7 @@ def find_issuer_certificate( # Finds the issuer certificate for a given certific
     if issuer_entry is None:
         return None
 
-    issuer_certificate_path = ca_store_path / issuer_entry["certificate_path"]
+    issuer_certificate_path = ca_store_path / stored_relative_path_to_path(issuer_entry["certificate_path"])
 
     if not issuer_certificate_path.exists():
         return None

@@ -1,36 +1,92 @@
 {
   "by_subject_key_identifier": {
-    "1d8f95651b3f1764354c9eb2e240e0a5c4cd93b5": {
+    "2a409e085ef984cc53e8611bf0f452d868621100": {
       "subject": "CN=Crypto Service Root CA",
       "issuer": "CN=Crypto Service Root CA",
-      "serial_number": "393989023603611226222658192778461259698352508764",
-      "directory": "Crypto-Service-Root-CA-4503142ed480",
-      "certificate_path": "Crypto-Service-Root-CA-4503142ed480\\certificate.pem",
-      "private_key_path": "Crypto-Service-Root-CA-4503142ed480\\private_key.pem"
+      "serial_number": "37963141987076385353235656907478568022509059217",
+      "directory": "Crypto-Service-Root-CA-6a6537f5cf97",
+      "certificate_path": "Crypto-Service-Root-CA-6a6537f5cf97\\certificate.pem",
+      "private_key_path": "Crypto-Service-Root-CA-6a6537f5cf97\\private_key.pem"
     },
-    "33720191a8971fa0616a3ed53bf20f1e11169689": {
+    "ac2bf55db4ba43583fcca261d3c5b89ff4963222": {
       "subject": "CN=Crypto Service TLS Sub CA",
       "issuer": "CN=Crypto Service Root CA",
-      "serial_number": "257686861287609630314747507024315596196511690847",
-      "directory": "Crypto-Service-TLS-Sub-CA-2d2314184fd0",
-      "certificate_path": "Crypto-Service-TLS-Sub-CA-2d2314184fd0\\certificate.pem",
-      "private_key_path": "Crypto-Service-TLS-Sub-CA-2d2314184fd0\\private_key.pem"
+      "serial_number": "96121830868954967836466342696501502525287576034",
+      "directory": "Crypto-Service-TLS-Sub-CA-10d64080f160",
+      "certificate_path": "Crypto-Service-TLS-Sub-CA-10d64080f160\\certificate.pem",
+      "private_key_path": "Crypto-Service-TLS-Sub-CA-10d64080f160\\private_key.pem"
     },
-    "bc44450aa3245a249d2d19229ab762f19e4ee77b": {
+    "e908c76c6ab631733f97746c828b54c727fea1f1": {
       "subject": "CN=Crypto Service Client Sub CA",
       "issuer": "CN=Crypto Service Root CA",
-      "serial_number": "554207774189505347266911629081369731014048857383",
-      "directory": "Crypto-Service-Client-Sub-CA-6113893d5a98",
-      "certificate_path": "Crypto-Service-Client-Sub-CA-6113893d5a98\\certificate.pem",
-      "private_key_path": "Crypto-Service-Client-Sub-CA-6113893d5a98\\private_key.pem"
+      "serial_number": "123158988950674683507618190223664261487799176950",
+      "directory": "Crypto-Service-Client-Sub-CA-1592a3db6948",
+      "certificate_path": "Crypto-Service-Client-Sub-CA-1592a3db6948\\certificate.pem",
+      "private_key_path": "Crypto-Service-Client-Sub-CA-1592a3db6948\\private_key.pem"
     },
-    "179fcf536c81d753ddb5579d28fd60f6e2ffa027": {
+    "13ea46d0bfaebbe7f55f15117b0c5ffa59a84328": {
       "subject": "CN=New Root CA",
       "issuer": "CN=New Root CA",
-      "serial_number": "64584283300620432685842596077974718245453868731",
-      "directory": "New-Root-CA-b500f366df15",
-      "certificate_path": "New-Root-CA-b500f366df15/certificate.pem",
-      "private_key_path": "New-Root-CA-b500f366df15/private_key.pem"
+      "serial_number": "41568851873013008257025369305358911995756006351",
+      "directory": "New-Root-CA-74803045e035",
+      "certificate_path": "New-Root-CA-74803045e035\\certificate.pem",
+      "private_key_path": "New-Root-CA-74803045e035\\private_key.pem"
+    },
+    "942844203df543e352d2b824cbc48bd317b9c1c1": {
+      "subject": "CN=New Sub CA",
+      "issuer": "CN=Crypto Service Root CA",
+      "serial_number": "323588952883929909113016133973310221343404815614",
+      "directory": "New-Sub-CA-38ae3b014247",
+      "certificate_path": "New-Sub-CA-38ae3b014247\\certificate.pem",
+      "private_key_path": "New-Sub-CA-38ae3b014247\\private_key.pem"
+    },
+    "d1406061937653404c3f5bbf9262be73cd6c292f": {
+      "subject": "CN=Old Root CA",
+      "issuer": "CN=Old Root CA",
+      "serial_number": "561374888488987879426763951577003473527619098203",
+      "directory": "Old-Root-CA-6254ebad47de",
+      "certificate_path": "Old-Root-CA-6254ebad47de/certificate.pem",
+      "private_key_path": "Old-Root-CA-6254ebad47de/private_key.pem"
+    },
+    "7fb7b61b2466bb97da3c66cdfe3389867e3ff6ee": {
+      "subject": "CN=New Crypto Service Root CA",
+      "issuer": "CN=New Crypto Service Root CA",
+      "serial_number": "140581603798106205453474736984123940143246221690",
+      "directory": "New-Crypto-Service-Root-CA-189fe5aabc4b",
+      "certificate_path": "New-Crypto-Service-Root-CA-189fe5aabc4b/certificate.pem",
+      "private_key_path": "New-Crypto-Service-Root-CA-189fe5aabc4b/private_key.pem"
+    },
+    "e46f997847cf5b3e9ab1b98c2daa0950b4e63b0a": {
+      "subject": "CN=Test Crypto Service Sub CA",
+      "issuer": "CN=New Crypto Service Root CA",
+      "serial_number": "115776316212334906048810555903375606032928648818",
+      "directory": "Test-Crypto-Service-Sub-CA-144796ee2aa2",
+      "certificate_path": "Test-Crypto-Service-Sub-CA-144796ee2aa2/certificate.pem",
+      "private_key_path": "Test-Crypto-Service-Sub-CA-144796ee2aa2/private_key.pem"
+    },
+    "9cfbe319477b4f2052578924d96dbae8f25e0581": {
+      "subject": "CN=Test Crypto Service Root CA",
+      "issuer": "CN=Test Crypto Service Root CA",
+      "serial_number": "622333605713710948056966151132681768180129998157",
+      "directory": "Test-Crypto-Service-Root-CA-6d02676e9bbb",
+      "certificate_path": "Test-Crypto-Service-Root-CA-6d02676e9bbb/certificate.pem",
+      "private_key_path": "Test-Crypto-Service-Root-CA-6d02676e9bbb/private_key.pem"
+    },
+    "96ac9ccb57f557bb5bfa3bd1cf350826f258154d": {
+      "subject": "CN=Docker Test Crypto Service Sub CA",
+      "issuer": "CN=New Crypto Service Root CA",
+      "serial_number": "314965628319896833965675669362087453917998624873",
+      "directory": "Docker-Test-Crypto-Service-Sub-CA-372b8c17fbaa",
+      "certificate_path": "Docker-Test-Crypto-Service-Sub-CA-372b8c17fbaa/certificate.pem",
+      "private_key_path": "Docker-Test-Crypto-Service-Sub-CA-372b8c17fbaa/private_key.pem"
+    },
+    "19b5f70957446db22db61f20e7a727a40cfd9432": {
+      "subject": "CN=Docker Test Crypto Service Root CA",
+      "issuer": "CN=Docker Test Crypto Service Root CA",
+      "serial_number": "618232194434393056141161953608060841839798550453",
+      "directory": "Docker-Test-Crypto-Service-Root-CA-6c4a7d8a229e",
+      "certificate_path": "Docker-Test-Crypto-Service-Root-CA-6c4a7d8a229e/certificate.pem",
+      "private_key_path": "Docker-Test-Crypto-Service-Root-CA-6c4a7d8a229e/private_key.pem"
     }
   }
 }
