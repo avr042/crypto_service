@@ -139,7 +139,6 @@ python -m crypto_service.main
 Levantar la API REST:
 
 ```powershell
-$env:PYTHONPATH = "src"
 python -m uvicorn crypto_service.api:app --reload
 ```
 
