@@ -8,6 +8,8 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.x509.oid import ExtensionOID, NameOID
 
 
+########################### Path and slug helper functions ###########################
+
 def slugify(value: str) -> str: # Converts a string into a slug format suitable for directory names
     value = re.sub(r"[^a-zA-Z0-9_.-]+", "-", value)
     value = value.strip("-")
@@ -22,6 +24,7 @@ def stored_relative_path_to_path(stored_path: str) -> Path: # Ensures that a sto
         raise ValueError("Invalid stored relative path.")
 
     return relative_path
+
 
 
 def get_common_name(certificate: x509.Certificate) -> str: # Retrieves the Common Name (CN) from a certificate's subject
@@ -170,6 +173,8 @@ def save_ca_to_pem( # Saves the private key and certificate of a CA to PEM files
 
     return ca_directory
 
+########################## Key loading/storing functions ########################
+
 def load_private_key_from_pem(path: str | Path) -> rsa.RSAPrivateKey: # Loads an RSA private key from a PEM file
     private_key_bytes = Path(path).read_bytes()
 
@@ -246,7 +251,7 @@ def load_ca_from_store( # Loads a CA from the store based on its Subject Key Ide
     )
 
 
-################# Certificate storage functions ####################
+################# Certificate loading/storing functions ####################
 
 def build_certificate_directory_path( # Builds a directory path for a certificate based on its common name and serial number
     certificate: x509.Certificate,
